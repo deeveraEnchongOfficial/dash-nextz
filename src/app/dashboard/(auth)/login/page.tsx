@@ -41,12 +41,10 @@ const Login = () => {
       password,
     };
 
-    console.log(payload);
-
-    // signIn("credentials", {
-    //   email,
-    //   password,
-    // });
+    signIn("credentials", {
+      email,
+      password,
+    });
   };
 
   return (
