@@ -5,6 +5,8 @@ import "@/css/satoshi.css";
 import "@/css/style.css";
 import React, { useEffect, useState } from "react";
 import Loader from "@/components/common/Loader";
+import AuthProvider from "@/components/AuthProvider/AuthProvider";
+import { SessionProvider } from "next-auth/react";
 
 export default function RootLayout({
   children,
@@ -23,9 +25,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>
-        <div className="dark:bg-boxdark-2 dark:text-bodydark">
-          {loading ? <Loader /> : children}
-        </div>
+      <SessionProvider>
+        <AuthProvider>
+          <div className="dark:bg-boxdark-2 dark:text-bodydark">
+            {loading ? <Loader /> : children}
+          </div>
+        </AuthProvider>
+        </SessionProvider>
       </body>
     </html>
   );

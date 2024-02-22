@@ -1,41 +1,21 @@
-'use client'
-import React, { useEffect, useState } from "react";
-import { signIn } from "next-auth/react";
-import { 
-  // useRouter, 
-  useSearchParams 
-} from "next/navigation";
-import Image from "next/image";
+import React from "react";
 import Link from "next/link";
+import Image from "next/image";
+import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
+import { Metadata } from "next";
+import DefaultLayout from "@/components/Layouts/DefaultLayout";
 
-const Login = () => {
-  const params = useSearchParams();
-  const [error, setError] = useState<any>("");
-  const [success, setSuccess] = useState<any>("");  
+export const metadata: Metadata = {
+  title: "Next.js SignIn Page | TailAdmin - Next.js Dashboard Template",
+  description: "This is Next.js Signin Page TailAdmin Dashboard Template",
+};
 
-  useEffect(() => {
-    setError(params.get("error"));
-    setSuccess(params.get("success"));
-  }, [params]);
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    const email = e.target[0].value;
-    const password = e.target[1].value;
-    
-    const payload = {
-      email,
-      password,
-    };
-
-    signIn("credentials", {
-      email,
-      password,
-    });
-  };
-
+const SignIn: React.FC = () => {
   return (
-    <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+    <DefaultLayout>
+      <Breadcrumb pageName="Sign In" />
+
+      <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="flex flex-wrap items-center">
           <div className="hidden w-full xl:block xl:w-1/2">
             <div className="px-26 py-17.5 text-center">
@@ -193,7 +173,7 @@ const Login = () => {
                 Sign In to TailAdmin
               </h2>
 
-              <form onSubmit={handleSubmit}>
+              <form>
                 <div className="mb-4">
                   <label className="mb-2.5 block font-medium text-black dark:text-white">
                     Email
@@ -230,11 +210,11 @@ const Login = () => {
                     Re-type Password
                   </label>
                   <div className="relative">
-                  <input
-                    type="password"
-                    placeholder="Enter your password"
-                    className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                  />
+                    <input
+                      type="password"
+                      placeholder="6+ Characters, 1 Capital letter"
+                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-white outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                    />
 
                     <span className="absolute right-4 top-4">
                       <svg
@@ -318,7 +298,8 @@ const Login = () => {
           </div>
         </div>
       </div>
+    </DefaultLayout>
   );
 };
 
-export default Login;
+export default SignIn;
