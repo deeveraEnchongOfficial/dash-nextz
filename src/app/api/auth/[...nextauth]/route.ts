@@ -7,12 +7,13 @@ import connect from "@/utils/db";
 import bcrypt from "bcryptjs";
 
 const handler = NextAuth({
+ secret: process.env.JWT_SECRET,
   providers: [
     CredentialsProvider({
       id: "credentials",
       name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "text", placeholder: "john@gmail.com" },
+        email: { label: "Email", type: "text", placeholder: "" },
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials: Record<string, string> | undefined) {
@@ -59,7 +60,15 @@ const handler = NextAuth({
   pages: {
     error: "/dashboard/login",
   },
-
+  callbacks: {
+    session: async ({ session, token, user }: { session: any, token: any, user: any}) => {
+      const fullUser = await User.findOne({ email: session.user.email }).select('-password');
+      session.auth = session.user || {};
+      session.auth.email = session.user.email;
+      session.auth.fullUser = fullUser;
+      return Promise.resolve(session);
+    },
+  },
 });
 
 export { handler as GET, handler as POST };
