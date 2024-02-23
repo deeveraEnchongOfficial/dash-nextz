@@ -68,6 +68,9 @@ const handler = NextAuth({
       session.auth.fullUser = fullUser;
       return Promise.resolve(session);
     },
+    redirect: async ({url, baseUrl}) => {
+      return Promise.resolve(baseUrl + '/dashboard');
+    },
   },
 });
 

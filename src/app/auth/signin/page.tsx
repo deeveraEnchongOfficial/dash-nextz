@@ -28,10 +28,7 @@ const Login = () => {
       password,
     };
 
-    signIn("credentials", {
-      email,
-      password,
-    });
+    signIn("credentials", payload);
   };
 
   return (
