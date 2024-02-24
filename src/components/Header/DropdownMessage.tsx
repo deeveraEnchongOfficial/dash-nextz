@@ -47,9 +47,8 @@ const DropdownMessage = () => {
         href="#"
       >
         <span
-          className={`absolute -right-0.5 -top-0.5 z-1 h-2 w-2 rounded-full bg-meta-1 ${
-            notifying === false ? "hidden" : "inline"
-          }`}
+          className={`absolute -right-0.5 -top-0.5 z-1 h-2 w-2 rounded-full bg-meta-1 ${notifying === false ? "hidden" : "inline"
+            }`}
         >
           <span className="absolute -z-1 inline-flex h-full w-full animate-ping rounded-full bg-meta-1 opacity-75"></span>
         </span>
@@ -86,9 +85,8 @@ const DropdownMessage = () => {
         ref={dropdown}
         onFocus={() => setDropdownOpen(true)}
         onBlur={() => setDropdownOpen(false)}
-        className={`absolute -right-16 mt-2.5 flex h-90 w-75 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark sm:right-0 sm:w-80 ${
-          dropdownOpen === true ? "block" : "hidden"
-        }`}
+        className={`absolute -right-16 mt-2.5 flex h-90 w-75 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark sm:right-0 sm:w-80 ${dropdownOpen === true ? "block" : "hidden"
+          }`}
       >
         <div className="px-4.5 py-3">
           <h5 className="text-sm font-medium text-bodydark2">Messages</h5>
@@ -127,11 +125,12 @@ const DropdownMessage = () => {
               className="flex gap-4.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
               href="/messages"
             >
-              <div className="h-12.5 w-12.5 rounded-full">
+              <div className="h-12 w-12 rounded-full overflow-hidden">
                 <Image
+                  className="rounded-full"
                   width={112}
                   height={112}
-                  src={"/images/user/user-01.png"}
+                  src={"/images/user/avatar_10.jpg"}
                   alt="User"
                   style={{
                     width: "auto",
