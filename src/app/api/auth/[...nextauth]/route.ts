@@ -7,7 +7,9 @@ import connect from "@/utils/db";
 import bcrypt from "bcryptjs";
 
 const handler = NextAuth({
- secret: process.env.JWT_SECRET,
+  session: {
+    strategy: "jwt",
+  },
   providers: [
     CredentialsProvider({
       id: "credentials",
@@ -58,17 +60,21 @@ const handler = NextAuth({
     }),
   ],
   pages: {
-    error: "/dashboard/login",
+    error: "/auth/signin",
   },
   callbacks: {
-    session: async ({ session, token, user }: { session: any, token: any, user: any}) => {
-      const fullUser = await User.findOne({ email: session.user.email }).select('-password');
-      session.auth = session.user || {};
-      session.auth.email = session.user.email;
-      session.auth.fullUser = fullUser;
-      return Promise.resolve(session);
+    async session({ token, session }: { token: any, session: any }) {
+      session.user = token.user;
+      session.user.password = undefined;
+      return session;
     },
-    redirect: async ({url, baseUrl}) => {
+    async jwt({ token, user }) {
+      if (user) {
+        token.user = user;
+      }
+      return token;
+    },
+    redirect: async ({ url, baseUrl }: { url: string, baseUrl: string }) => {
       return Promise.resolve(baseUrl + '/dashboard');
     },
   },

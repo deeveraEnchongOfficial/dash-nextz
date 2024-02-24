@@ -4,7 +4,7 @@ import { Chat } from "@/types/chat";
 
 const chatData: Chat[] = [
   {
-    avatar: "/images/user/user-01.png",
+    avatar: "/images/user/avatar_10.jpg",
     name: "Devid Heilo",
     text: "How are you?",
     time: 12,
@@ -36,7 +36,7 @@ const chatData: Chat[] = [
     dot: 6,
   },
   {
-    avatar: "/images/user/user-01.png",
+    avatar: "/images/user/avatar_10.jpg",
     name: "Jhon Doe",
     text: "How are you?",
     time: 32,
@@ -69,6 +69,7 @@ const ChatCard = () => {
           >
             <div className="relative h-14 w-14 rounded-full">
               <Image
+                className="rounded-full"
                 width={56}
                 height={56}
                 src={chat.avatar}
