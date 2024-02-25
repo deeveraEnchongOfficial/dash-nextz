@@ -4,9 +4,9 @@ import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 
 export const metadata: Metadata = {
-  title: "Next.js Settings | TailAdmin - Next.js Dashboard Template",
+  title: "Next.js Settings | DashNextz - Next.js Dashboard",
   description:
-    "This is Next.js Settings page for TailAdmin - Next.js Tailwind CSS Admin Dashboard Template",
+    "This is Next.js Settings page for DashNextz - Next.js Tailwind CSS Admin Dashboard",
 };
 
 const Settings = () => {
@@ -64,8 +64,8 @@ const Settings = () => {
                           type="text"
                           name="fullName"
                           id="fullName"
-                          placeholder="Devid Jhon"
-                          defaultValue="Devid Jhon"
+                          placeholder="Enchong Dee Vera"
+                          defaultValue="Enchong Dee Vera"
                         />
                       </div>
                     </div>
@@ -82,8 +82,8 @@ const Settings = () => {
                         type="text"
                         name="phoneNumber"
                         id="phoneNumber"
-                        placeholder="+990 3343 7865"
-                        defaultValue="+990 3343 7865"
+                        placeholder="0912 3456 7890"
+                        defaultValue="0912 3456 7890"
                       />
                     </div>
                   </div>
@@ -126,8 +126,8 @@ const Settings = () => {
                         type="email"
                         name="emailAddress"
                         id="emailAddress"
-                        placeholder="devidjond45@gmail.com"
-                        defaultValue="devidjond45@gmail.com"
+                        placeholder="enchong@admin@gmail.com"
+                        defaultValue="enchong@admin@gmail.com"
                       />
                     </div>
                   </div>
@@ -144,8 +144,8 @@ const Settings = () => {
                       type="text"
                       name="Username"
                       id="Username"
-                      placeholder="devidjhon24"
-                      defaultValue="devidjhon24"
+                      placeholder="Enchong"
+                      defaultValue="Enchong"
                     />
                   </div>
 
@@ -229,7 +229,8 @@ const Settings = () => {
                   <div className="mb-4 flex items-center gap-3">
                     <div className="h-14 w-14 rounded-full">
                       <Image
-                        src={"/images/user/user-03.png"}
+                        className="rounded-full"
+                        src={"/images/user/avatar_13.jpg"}
                         width={55}
                         height={55}
                         alt="User"
