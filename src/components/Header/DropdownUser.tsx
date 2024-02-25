@@ -49,7 +49,7 @@ const DropdownUser = () => {
             {session?.user?.name}
           </span>
           <span className="block text-xs">
-            {session?.user?.fullUser?.isAdmin ? "Admin" : "User"}
+            {session?.user?.isAdmin ? "Admin" : "User"}
           </span>
         </span>
 
@@ -58,7 +58,7 @@ const DropdownUser = () => {
             className="rounded-full"
             width={112}
             height={112}
-            src={"/images/user/avatar_10.jpg"}
+            src={"/images/user/avatar_13.jpg"}
             style={{
               width: "auto",
               height: "auto",
