@@ -2,9 +2,9 @@ import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import User from "@/models/User";
-import connect from "@/utils/db";
 import bcrypt from "bcryptjs";
+import { PrismaClient } from '@prisma/client'
+import { connect } from "@/utils/db";
 
 const handler = NextAuth({
   session: {
@@ -19,12 +19,15 @@ const handler = NextAuth({
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials: Record<string, string> | undefined) {
+        const prisma = new PrismaClient()
         //Check if the user exists.
         await connect(); // Assuming this function connects to your database
 
         try {
-          const user = await User.findOne({
-            email: credentials?.email,
+          const user = await prisma.user.findUnique({
+            where: {
+              email: credentials?.email
+            }
           });
 
           if (user) {
