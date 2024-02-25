@@ -3,7 +3,7 @@ import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
-import { PrismaClient } from '@prisma/client'
+import prisma from "@/utils/connect";
 import { connect } from "@/utils/db";
 
 const handler = NextAuth({
@@ -19,7 +19,6 @@ const handler = NextAuth({
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials: Record<string, string> | undefined) {
-        const prisma = new PrismaClient()
         //Check if the user exists.
         await connect(); // Assuming this function connects to your database
 

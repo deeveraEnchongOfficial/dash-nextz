@@ -1,10 +1,9 @@
 import { NextResponse } from "next/server";
-import { PrismaClient } from '@prisma/client'
+import prisma from "@/utils/connect";
 import bcrypt from "bcryptjs";
 import { connect } from "@/utils/db";
 
 export const POST = async (request: any) => {
-  const prisma = new PrismaClient()
   try {
     const { name, email, password } = await request.json();
     if (!name || !email || !password) return NextResponse.json({ message: "Please fill in all fields" }, { status: 422 });

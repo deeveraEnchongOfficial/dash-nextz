@@ -1,7 +1,6 @@
-import { PrismaClient } from '@prisma/client'
+import prisma from "@/utils/connect";
 
 export const connect = async () => {
-  const prisma = new PrismaClient()
   try {
     await prisma.$connect();
   } catch (error) {
